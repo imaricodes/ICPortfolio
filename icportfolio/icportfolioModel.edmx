@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ICPORTFOLIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageiD" />
+          </Key>
+          <Property Name="ImageiD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="url" Type="nvarchar(max)" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="isMain" Type="bit" Nullable="false" />
+          <Property Name="isCode" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="TypeID" Type="int" />
+          <Property Name="summary" Type="nvarchar(max)" />
+          <Property Name="Long Descriptoin" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="primary_image_URL" Type="nvarchar(max)" />
+          <Property Name="CodeSample1URL" Type="nvarchar(max)" />
+          <Property Name="CodeSample2URL" Type="nvarchar(max)" />
+          <Property Name="CodeSample3URL" Type="nvarchar(max)" />
+          <Property Name="OOP" Type="bit" Nullable="false" />
+          <Property Name="MVC" Type="bit" Nullable="false" />
+          <Property Name="Bootstrap" Type="bit" Nullable="false" />
+          <Property Name="ASP_NET" Type="bit" Nullable="false" />
+          <Property Name="SQL" Type="bit" Nullable="false" />
+          <Property Name="JSON" Type="bit" Nullable="false" />
+          <Property Name="AJAX" Type="bit" Nullable="false" />
+          <Property Name="JavaScript" Type="bit" Nullable="false" />
+          <Property Name="DB_First" Type="bit" Nullable="false" />
+          <Property Name="Code_First" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectFeature">
+          <Key>
+            <PropertyRef Name="ProjectFeatureID" />
+          </Key>
+          <Property Name="ProjectFeatureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="PropertyID" Type="int" />
+        </EntityType>
+        <EntityType Name="ProjectVideo">
+          <Key>
+            <PropertyRef Name="VideoID" />
+          </Key>
+          <Property Name="VideoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="VideoUrl" Type="nvarchar(max)" />
+          <Property Name="hasAudio" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Property" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Image_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFeature_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="ProjectFeature" Type="Self.ProjectFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectFeature">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFeature_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="ProjectFeature" Type="Self.ProjectFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="PropertyID" />
+            </Principal>
+            <Dependent Role="ProjectFeature">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectVideo_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="ProjectVideo" Type="Self.ProjectVideo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectVideo">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ICPORTFOLIOModelStoreContainer">
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectFeature" EntityType="Self.ProjectFeature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectVideo" EntityType="Self.ProjectVideo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Image_Project" Association="Self.FK_Image_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Type" Association="Self.FK_Project_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFeature_Project" Association="Self.FK_ProjectFeature_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectFeature" EntitySet="ProjectFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFeature_Property" Association="Self.FK_ProjectFeature_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="ProjectFeature" EntitySet="ProjectFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectVideo_Project" Association="Self.FK_ProjectVideo_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectVideo" EntitySet="ProjectVideo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ICPORTFOLIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageiD" />
+          </Key>
+          <Property Name="ImageiD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="isMain" Type="Boolean" Nullable="false" />
+          <Property Name="isCode" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_Image_Project" FromRole="Image" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TypeID" Type="Int32" />
+          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OOP" Type="Boolean" Nullable="false" />
+          <Property Name="Bootstrap" Type="Boolean" Nullable="false" />
+          <Property Name="MVC" Type="Boolean" Nullable="false" />
+          <Property Name="ASP_NET" Type="Boolean" Nullable="false" />
+          <Property Name="SQL" Type="Boolean" Nullable="false" />
+          <Property Name="JSON" Type="Boolean" Nullable="false" />
+          <Property Name="AJAX" Type="Boolean" Nullable="false" />
+          <Property Name="JavaScript" Type="Boolean" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="primary_image_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DB_First" Type="Boolean" Nullable="false" />
+          <Property Name="Code_First" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_Image_Project" FromRole="Project" ToRole="Image" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_Project_Type" FromRole="Project" ToRole="Type" />
+          <NavigationProperty Name="ProjectFeatures" Relationship="Self.FK_ProjectFeature_Project" FromRole="Project" ToRole="ProjectFeature" />
+          <NavigationProperty Name="ProjectVideos" Relationship="Self.FK_ProjectVideo_Project" FromRole="Project" ToRole="ProjectVideo" />
+          <Property Name="Long_Descriptoin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CodeSample1URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CodeSample2URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CodeSample3URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProjectFeature">
+          <Key>
+            <PropertyRef Name="ProjectFeatureID" />
+          </Key>
+          <Property Name="ProjectFeatureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="PropertyID" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_ProjectFeature_Project" FromRole="ProjectFeature" ToRole="Project" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_ProjectFeature_Property" FromRole="ProjectFeature" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="ProjectVideo">
+          <Key>
+            <PropertyRef Name="VideoID" />
+          </Key>
+          <Property Name="VideoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VideoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hasAudio" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_ProjectVideo_Project" FromRole="ProjectVideo" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Property1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProjectFeatures" Relationship="Self.FK_ProjectFeature_Property" FromRole="Property" ToRole="ProjectFeature" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Type" FromRole="Type" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_Image_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFeature_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="ProjectFeature" Type="Self.ProjectFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectFeature">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectVideo_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="ProjectVideo" Type="Self.ProjectVideo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectVideo">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectFeature_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="ProjectFeature" Type="Self.ProjectFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="PropertyID" />
+            </Principal>
+            <Dependent Role="ProjectFeature">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ICPORTFOLIOEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="ProjectFeatures" EntityType="Self.ProjectFeature" />
+          <EntitySet Name="ProjectVideos" EntityType="Self.ProjectVideo" />
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="Types" EntityType="Self.Type" />
+          <AssociationSet Name="FK_Image_Project" Association="Self.FK_Image_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Type" Association="Self.FK_Project_Type">
+            <End Role="Type" EntitySet="Types" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFeature_Project" Association="Self.FK_ProjectFeature_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectVideo_Project" Association="Self.FK_ProjectVideo_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectVideo" EntitySet="ProjectVideos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectFeature_Property" Association="Self.FK_ProjectFeature_Property">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ICPORTFOLIOModelStoreContainer" CdmEntityContainer="ICPORTFOLIOEntities2">
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="ICPORTFOLIOModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="ImageiD" ColumnName="ImageiD" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="isMain" ColumnName="isMain" />
+                <ScalarProperty Name="isCode" ColumnName="isCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="ICPORTFOLIOModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="CodeSample3URL" ColumnName="CodeSample3URL" />
+                <ScalarProperty Name="CodeSample2URL" ColumnName="CodeSample2URL" />
+                <ScalarProperty Name="CodeSample1URL" ColumnName="CodeSample1URL" />
+                <ScalarProperty Name="Long_Descriptoin" ColumnName="Long Descriptoin" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="OOP" ColumnName="OOP" />
+                <ScalarProperty Name="Bootstrap" ColumnName="Bootstrap" />
+                <ScalarProperty Name="MVC" ColumnName="MVC" />
+                <ScalarProperty Name="ASP_NET" ColumnName="ASP_NET" />
+                <ScalarProperty Name="SQL" ColumnName="SQL" />
+                <ScalarProperty Name="JSON" ColumnName="JSON" />
+                <ScalarProperty Name="AJAX" ColumnName="AJAX" />
+                <ScalarProperty Name="JavaScript" ColumnName="JavaScript" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="primary_image_URL" ColumnName="primary_image_URL" />
+                <ScalarProperty Name="DB_First" ColumnName="DB_First" />
+                <ScalarProperty Name="Code_First" ColumnName="Code_First" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectFeatures">
+            <EntityTypeMapping TypeName="ICPORTFOLIOModel.ProjectFeature">
+              <MappingFragment StoreEntitySet="ProjectFeature">
+                <ScalarProperty Name="ProjectFeatureID" ColumnName="ProjectFeatureID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectVideos">
+            <EntityTypeMapping TypeName="ICPORTFOLIOModel.ProjectVideo">
+              <MappingFragment StoreEntitySet="ProjectVideo">
+                <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="hasAudio" ColumnName="hasAudio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="ICPORTFOLIOModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="Property1" ColumnName="Property" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="ICPORTFOLIOModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="type1" ColumnName="type" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

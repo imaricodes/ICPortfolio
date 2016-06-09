@@ -1,0 +1,160 @@
+﻿@model IEnumerable<icportfolio.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row">
+    <div class="col-md-4 col-sm-4 portfolio-item">
+
+
+        <div id="welcome-image" class="image-responsive">
+
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-4 portfolio-item ">
+        
+           
+                <h1>Imari Childress</h1>
+                <p>
+                    At the We Can CodeIT bootcamp, I learned to code.
+                    At the We Can CodeIT bootcamp, I learned to code.
+                    At the We Can CodeIT bootcamp, I learned to code.
+                    At the We Can CodeIT bootcamp, I learned to code.
+                    At the We Can CodeIT bootcamp, I learned to code.
+                    At the We Can CodeIT bootcamp, I learned to code.
+                    At the We Can CodeIT bootcamp, I learned to code.
+                </p>
+            
+        
+    </div>
+    <div class="col-md-4 col-sm-4 portfolio-item">
+        <div id="evolution-image"></div>
+    </div>
+
+</div>
+
+
+<hr />
+@foreach (var item in Model)
+{
+  <!-- Project One -->
+    <div class="row">
+        <div class="col-md-7">
+            <a href="#">
+                <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+            </a>
+        </div>
+        <div class="col-md-5">
+
+
+            <h3>@Html.DisplayFor(modelItem => item.name)</h3>
+
+
+            @*<h4>Subheading</h4>*@
+            <p>@Html.DisplayFor(modelItem => item.summary)</p>
+
+
+            <a href="@Url.Action("Details", "Projects")" class="btn btn-primary">
+                Details
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </a>
+
+        </div>
+    </div>
+    <hr />
+    <!-- /.row -->
+
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.summary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bootstrap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MVC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ASP_NET)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class_Inheritiance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SQL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JSON)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AJAX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JavaScript)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type.type1)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bootstrap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MVC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ASP_NET)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class_Inheritiance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SQL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JSON)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AJAX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JavaScript)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.URL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type.type1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProjectID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProjectID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProjectID })
+            </td>
+        </tr>
+    }
+
+</table>

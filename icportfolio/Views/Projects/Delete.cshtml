@@ -1,0 +1,176 @@
+﻿@model icportfolio.Project
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.summary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OOP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OOP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bootstrap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bootstrap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MVC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MVC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ASP_NET)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ASP_NET)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SQL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SQL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JSON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JSON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AJAX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AJAX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JavaScript)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JavaScript)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.primary_image_URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primary_image_URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DB_First)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DB_First)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code_First)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code_First)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Long_Descriptoin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Long_Descriptoin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeSample1URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeSample1URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeSample2URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeSample2URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeSample3URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeSample3URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type.type1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type.type1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

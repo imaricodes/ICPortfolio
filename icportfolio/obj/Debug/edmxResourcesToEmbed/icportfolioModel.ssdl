@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ICPORTFOLIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageiD" />
+    </Key>
+    <Property Name="ImageiD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="url" Type="nvarchar(max)" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="isMain" Type="bit" Nullable="false" />
+    <Property Name="isCode" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" />
+    <Property Name="TypeID" Type="int" />
+    <Property Name="summary" Type="nvarchar(max)" />
+    <Property Name="Long Descriptoin" Type="nvarchar(max)" />
+    <Property Name="URL" Type="nvarchar(max)" />
+    <Property Name="primary_image_URL" Type="nvarchar(max)" />
+    <Property Name="CodeSample1URL" Type="nvarchar(max)" />
+    <Property Name="CodeSample2URL" Type="nvarchar(max)" />
+    <Property Name="CodeSample3URL" Type="nvarchar(max)" />
+    <Property Name="OOP" Type="bit" Nullable="false" />
+    <Property Name="MVC" Type="bit" Nullable="false" />
+    <Property Name="Bootstrap" Type="bit" Nullable="false" />
+    <Property Name="ASP_NET" Type="bit" Nullable="false" />
+    <Property Name="SQL" Type="bit" Nullable="false" />
+    <Property Name="JSON" Type="bit" Nullable="false" />
+    <Property Name="AJAX" Type="bit" Nullable="false" />
+    <Property Name="JavaScript" Type="bit" Nullable="false" />
+    <Property Name="DB_First" Type="bit" Nullable="false" />
+    <Property Name="Code_First" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectFeature">
+    <Key>
+      <PropertyRef Name="ProjectFeatureID" />
+    </Key>
+    <Property Name="ProjectFeatureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="PropertyID" Type="int" />
+  </EntityType>
+  <EntityType Name="ProjectVideo">
+    <Key>
+      <PropertyRef Name="VideoID" />
+    </Key>
+    <Property Name="VideoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="VideoUrl" Type="nvarchar(max)" />
+    <Property Name="hasAudio" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="PropertyID" />
+    </Key>
+    <Property Name="PropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Property" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Image_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Type">
+    <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectFeature_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="ProjectFeature" Type="Self.ProjectFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="ProjectFeature">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectFeature_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+    <End Role="ProjectFeature" Type="Self.ProjectFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="PropertyID" />
+      </Principal>
+      <Dependent Role="ProjectFeature">
+        <PropertyRef Name="PropertyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectVideo_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="ProjectVideo" Type="Self.ProjectVideo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="ProjectVideo">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ICPORTFOLIOModelStoreContainer">
+    <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectFeature" EntityType="Self.ProjectFeature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectVideo" EntityType="Self.ProjectVideo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Image_Project" Association="Self.FK_Image_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Image" EntitySet="Image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Type" Association="Self.FK_Project_Type">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectFeature_Project" Association="Self.FK_ProjectFeature_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectFeature" EntitySet="ProjectFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectFeature_Property" Association="Self.FK_ProjectFeature_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="ProjectFeature" EntitySet="ProjectFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectVideo_Project" Association="Self.FK_ProjectVideo_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectVideo" EntitySet="ProjectVideo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

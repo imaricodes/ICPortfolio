@@ -1,0 +1,44 @@
+﻿
+6/3
+1:30
+
+Trying out scrolling bootstrap template...
+Add:
+-scrolling-nav.css
+-scrolling-nav.js
+-jquery.easing.min.js
+//don't forget to add references to these docs in the layout page.. I would like to know how to 
+Theme Description:
+Scrolling Nav is a basic Bootstrap framework for creating smooth scrolling, one page websites.
+
+Theme Features:
+-Fixed top navigation that collapses on scroll
+-Smooth scrolling animations
+-Scrollspy that highlights active page sections
+
+Directions:
+To make a link smooth scroll to another section on the page, give the link the .page-scroll class and set the link target to a corresponding ID on the page.
+
+
+**I have not done the above yet. may not...
+
+
+6/5
+6pm
+Edit the Project Index view by adding 1-col bootstrap template
+
+//
+Wondering how to just grab a value of a field and display it. Really need to do this with a query but, this simple command here gets the first value in the 'name' column..to string not needed..
+<h3>@Model.First().name</h3>
+The model in this example is the IEnum that resulst from the controller doing a query select (linq) of all items and passing to view method
+
+
+//
+Have a bootstrap button and want to use it with a razor action link.
+Here’s how (includes span for glyphicon, but the glyph is not necessary)
+
+<a href="@Url.Action("Action", "Controller")" class="btn btn-warning">
+    link text
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+</a>
+

@@ -1,0 +1,34 @@
+﻿@model icportfolio.ProjectFeature
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProjectFeature</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Property.Property1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Property.Property1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectFeatureID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ICPORTFOLIOModelStoreContainer" CdmEntityContainer="ICPORTFOLIOEntities2">
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="ICPORTFOLIOModel.Image">
+        <MappingFragment StoreEntitySet="Image">
+          <ScalarProperty Name="ImageiD" ColumnName="ImageiD" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="isMain" ColumnName="isMain" />
+          <ScalarProperty Name="isCode" ColumnName="isCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="ICPORTFOLIOModel.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="CodeSample3URL" ColumnName="CodeSample3URL" />
+          <ScalarProperty Name="CodeSample2URL" ColumnName="CodeSample2URL" />
+          <ScalarProperty Name="CodeSample1URL" ColumnName="CodeSample1URL" />
+          <ScalarProperty Name="Long_Descriptoin" ColumnName="Long Descriptoin" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="OOP" ColumnName="OOP" />
+          <ScalarProperty Name="Bootstrap" ColumnName="Bootstrap" />
+          <ScalarProperty Name="MVC" ColumnName="MVC" />
+          <ScalarProperty Name="ASP_NET" ColumnName="ASP_NET" />
+          <ScalarProperty Name="SQL" ColumnName="SQL" />
+          <ScalarProperty Name="JSON" ColumnName="JSON" />
+          <ScalarProperty Name="AJAX" ColumnName="AJAX" />
+          <ScalarProperty Name="JavaScript" ColumnName="JavaScript" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="primary_image_URL" ColumnName="primary_image_URL" />
+          <ScalarProperty Name="DB_First" ColumnName="DB_First" />
+          <ScalarProperty Name="Code_First" ColumnName="Code_First" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectFeatures">
+      <EntityTypeMapping TypeName="ICPORTFOLIOModel.ProjectFeature">
+        <MappingFragment StoreEntitySet="ProjectFeature">
+          <ScalarProperty Name="ProjectFeatureID" ColumnName="ProjectFeatureID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectVideos">
+      <EntityTypeMapping TypeName="ICPORTFOLIOModel.ProjectVideo">
+        <MappingFragment StoreEntitySet="ProjectVideo">
+          <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+          <ScalarProperty Name="hasAudio" ColumnName="hasAudio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Properties">
+      <EntityTypeMapping TypeName="ICPORTFOLIOModel.Property">
+        <MappingFragment StoreEntitySet="Property">
+          <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+          <ScalarProperty Name="Property1" ColumnName="Property" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="ICPORTFOLIOModel.Type">
+        <MappingFragment StoreEntitySet="Type">
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="type1" ColumnName="type" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

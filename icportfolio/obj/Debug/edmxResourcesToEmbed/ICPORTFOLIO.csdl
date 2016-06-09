@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ICPORTFOLIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageiD" />
+    </Key>
+    <Property Name="ImageiD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectID" Type="Int32" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_Image_Project" FromRole="Image" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OOP" Type="Boolean" Nullable="false" />
+    <Property Name="Bootstrap" Type="Boolean" Nullable="false" />
+    <Property Name="MVC" Type="Boolean" Nullable="false" />
+    <Property Name="ASP_NET" Type="Boolean" Nullable="false" />
+    <Property Name="SQL" Type="Boolean" Nullable="false" />
+    <Property Name="JSON" Type="Boolean" Nullable="false" />
+    <Property Name="AJAX" Type="Boolean" Nullable="false" />
+    <Property Name="JavaScript" Type="Boolean" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="primary_image_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DB_First" Type="Boolean" Nullable="false" />
+    <Property Name="Code_First" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Images" Relationship="Self.FK_Image_Project" FromRole="Project" ToRole="Image" />
+    <NavigationProperty Name="Type" Relationship="Self.FK_Project_Type" FromRole="Project" ToRole="Type" />
+    <NavigationProperty Name="ProjectFeatures" Relationship="Self.FK_ProjectFeature_Project" FromRole="Project" ToRole="ProjectFeature" />
+  </EntityType>
+  <EntityType Name="ProjectFeature">
+    <Key>
+      <PropertyRef Name="ProjectFeatureID" />
+    </Key>
+    <Property Name="ProjectFeatureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="PropertyID" Type="Int32" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_ProjectFeature_Project" FromRole="ProjectFeature" ToRole="Project" />
+    <NavigationProperty Name="Property" Relationship="Self.FK_ProjectFeature_Property" FromRole="ProjectFeature" ToRole="Property" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="PropertyID" />
+    </Key>
+    <Property Name="PropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Property1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProjectFeatures" Relationship="Self.FK_ProjectFeature_Property" FromRole="Property" ToRole="ProjectFeature" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjectID" Type="Int32" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK_Project_Type" FromRole="Type" ToRole="Project" />
+  </EntityType>
+  <Association Name="FK_Image_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Type">
+    <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectFeature_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="ProjectFeature" Type="Self.ProjectFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="ProjectFeature">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectFeature_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+    <End Role="ProjectFeature" Type="Self.ProjectFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="PropertyID" />
+      </Principal>
+      <Dependent Role="ProjectFeature">
+        <PropertyRef Name="PropertyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ICPORTFOLIOEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Images" EntityType="Self.Image" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="ProjectFeatures" EntityType="Self.ProjectFeature" />
+    <EntitySet Name="Properties" EntityType="Self.Property" />
+    <EntitySet Name="Types" EntityType="Self.Type" />
+    <AssociationSet Name="FK_Image_Project" Association="Self.FK_Image_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Type" Association="Self.FK_Project_Type">
+      <End Role="Type" EntitySet="Types" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectFeature_Project" Association="Self.FK_ProjectFeature_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectFeature_Property" Association="Self.FK_ProjectFeature_Property">
+      <End Role="Property" EntitySet="Properties" />
+      <End Role="ProjectFeature" EntitySet="ProjectFeatures" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<icportfolio.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row" style="padding-top: 20px;">
+    <div class="col-md-4 col-sm-4 portfolio-item">
+
+
+        <div id="welcome-image" class="image-responsive">
+
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-4 portfolio-item ">
+
+
+        <h1><strong>Imari Codes</strong></h1>
+        <p>
+           I learned to code at <a href="https://wecancodeit.org/" target="_blank"><strong>We Can CodeIT</strong></a>. This portfolio represents my <strong>EVOLUTION (GIF IT?)</strong> from a knuckle dragging weekend dabbler to a <strong>Junior Level</strong> programmer.
+        </p>
+        <p>
+            Coding is a humbling experience. Countless times a day, I go from feeling like a genius to an infant and back again. On good days, I end on genius.
+        </p>
+        <p>
+            The depth of my knowledge is in the <strong>C#, ASP.NET, </strong> and <strong>SQL</strong> areas, while the breadth touches on front-end technologies such as <strong>JavaScript, Bootstrap, <strong>and </strong> CSS/HTML</strong>.
+        </p>
+
+
+    </div>
+    <div class="col-md-4 col-sm-4 portfolio-item">
+        @* custom css here to call image *@
+        <div id="evolution-image"></div>
+    </div>
+
+</div>
+
+<hr/>
+<div class="text-center text-capitalize">
+    <h1>Projects  >>>>></h1>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-md-7">
+            @if (item.primary_image_URL != null)
+            {
+                <img class="img-responsive" src="@Url.Content(item.primary_image_URL)" alt="">
+            }
+
+        </div>
+        <div class="col-md-5">
+            <h3>@Html.DisplayFor(modelItem => item.name)</h3>
+            <h4>@Html.DisplayFor(modelItem => item.Type.type1)</h4>
+            <p>@Html.DisplayFor(modelItem => item.summary)</p>
+            @Html.ActionLink("Details", "Details", new { id = item.ProjectID })
+        </div>
+    </div>
+    <hr />
+}

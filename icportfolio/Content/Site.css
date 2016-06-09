@@ -1,0 +1,102 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #cccccc;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/*My CSS*/
+
+#welcome-image{
+   content:url(images/imari_face.jpg);
+    height:300px;
+    max-width: 400px;
+     display:block;
+    margin:auto;
+
+    
+}
+
+#evolution-image{
+   content:url(images/evolve.gif);
+
+    max-width: 300px;
+   
+     display:block;
+    margin:auto;
+    
+}
+
+body{
+    
+    background-color: #cccccc;
+    
+}
+
+
+
+div{
+    background-color: #cccccc;
+}
+
+
+/*Bootstrap Collapse Div*/
+
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+.panel-heading a.collapsed:after {
+    content:"\e080";
+}
+
+/*Modal Popup*/
+
+#myModal .modal-content
+{
+  height:auto;
+  overflow:auto;
+}
+
+/*PDF Popup*/
+
+    .iframe-container {    
+    padding-bottom: 60%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.iframe-container iframe,
+.iframe-container object,
+.iframe-container embed{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal.in .modal-dialog {
+  transform: none; /*translate(0px, 0px);*/
+}

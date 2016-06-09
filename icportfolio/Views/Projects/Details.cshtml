@@ -1,0 +1,38 @@
+﻿@model icportfolio.Project
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>@Html.DisplayFor(model => model.name) - @Html.DisplayFor(model => model.Type.type1)</h1>
+
+
+
+
+<h4><strong>Technologies Used</strong></h4>
+<p>
+    @Html.DisplayFor(model => model.OOP) @Html.DisplayNameFor(model => model.OOP) |
+    @Html.DisplayFor(model => model.Bootstrap) @Html.DisplayNameFor(model => model.Bootstrap) |
+    @Html.DisplayFor(model => model.MVC) @Html.DisplayNameFor(model => model.MVC) |
+    @Html.DisplayFor(model => model.ASP_NET) @Html.DisplayNameFor(model => model.ASP_NET) |
+    @Html.DisplayFor(model => model.SQL) @Html.DisplayNameFor(model => model.SQL) |
+    @Html.DisplayFor(model => model.JSON) @Html.DisplayNameFor(model => model.JSON) |
+    @Html.DisplayFor(model => model.AJAX) @Html.DisplayNameFor(model => model.AJAX) |
+    @Html.DisplayFor(model => model.JavaScript) @Html.DisplayNameFor(model => model.JavaScript) |
+    @Html.DisplayFor(model => model.DB_First) @Html.DisplayNameFor(model => model.DB_First) |
+    @Html.DisplayFor(model => model.Code_First) @Html.DisplayNameFor(model => model.Code_First) 
+</p>
+
+<h4><strong>Description</strong></h4>
+<p>@Html.DisplayFor(model => model.Long_Descriptoin)</p>
+
+
+
+<a class="btn btn-primary" href="@Html.DisplayFor(model => model.URL)" target="_blank">GitHub</a>
+<a class="btn btn-primary" href="@Html.DisplayFor(model => model.CodeSample1URL)" target="_blank">Code</a>
+
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
